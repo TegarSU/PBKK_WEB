@@ -8,6 +8,7 @@ use App\Http\Requests\mhs\UpdateRequest;
 use App\Mahasiswa;
 use App\Mhs_mkl;
 use App\Dosen;
+use DB;
 
 class mhscontroller extends Controller
 {
@@ -43,11 +44,17 @@ class mhscontroller extends Controller
 
 	public function show($id)    
 	{        //
+
+		//
+        //Query Join
+        //$data = DB::table('mahasiswas')->join('dosens','mahasiswas.dosens_id','=','dosens.id')->get();
+        //dd($data);
+        //Raw
+        $data = DB::select( DB::raw("select * from dosens JOIN mahasiswas ON dosens.id = mahasiswas.dosens_id") );
+        // dd($data);
+
 		$data = mahasiswa::find($id);
-		// dd($data);
-		// $mhs_id = $data->nrp
-		// $mkl = Mhs_mkl::find($id);
-		// dd($mkl);
+		
 		return view('mhs.show', compact('data'));  
 	} 
 
