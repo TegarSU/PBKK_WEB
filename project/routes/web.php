@@ -14,7 +14,7 @@
 use Illuminate\Http\Request;
 
 Route::get('/', function () {
-    return view('index');
+    return view('home');
 });
 
 Route::get('/form', 'formController@index');
@@ -37,6 +37,10 @@ Route::post('/calculator', function (Request $request) {
     return view('calculator', compact('hasil'));
 });
 
+
+// Route::get('mahasiswa/{id}/delete', 'mhsController@destroy')->name('mahasiswa.destroy');
+// // Route::resource('projects', 'Admin\ProjectsController', ['except' => 'destroy']);
+// Route::resource('mahasiswa','mhsController', ['except' => 'destroy']);
 Route::resource('mahasiswa','mhsController');
 Route::resource('dosen','dsnController');
 Route::resource('mata_kuliah','mklController');

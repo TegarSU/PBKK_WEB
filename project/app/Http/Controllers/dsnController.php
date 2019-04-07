@@ -102,6 +102,7 @@ class dsnController extends Controller
     public function destroy($id)
     {        
         $m = Dosen::findOrFail($id);
+        $
         $m->delete();
         return redirect()->route('dosen.index')->with('alert-success', 'Data Berhasil Dihapus.');   
     }

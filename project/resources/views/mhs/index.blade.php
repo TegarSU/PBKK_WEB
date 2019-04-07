@@ -1,55 +1,61 @@
-@extends('layouts.app')
-
+@extends('app')
+@section('title')
+    Data Mahasiswa
+@endsection
 @section('content')
-@include('layouts.navbar')
-<div class="container">
-	<div class="row">
-		<div class="col-md-12">
-			<h3>Tabel Mahasiswa</h3>
-			<div class="panel panel-default">
-				<div class="panel-body">
-					@if(Session::has('alert-success'))
-					    <div class="alert alert-success">
-						{{ Session::get('alert-success') }}
-						</div>
-					@endif
-					<a href="{{route('mahasiswa.create')}}" class="btn btn-info pull-right">Tambah Data</a><br><br>
-					<table class="table table-striped">
-						<tr>
-							<th class="text-center align-middle" style="width: 10">NO</th>
-							{{-- <th>NRP</th> --}}
-							<th class="text-center align-middle" style="width: 80">Nama</th>
-							{{-- <th>Alamat</th> --}}
-							<th class="text-right align-middle" style="width: 10">Action</th>
-						</tr>
-						<td class="text-center align-middle" style="width: 10"><?php $no=1; ?></td>
-						
-						@foreach($data as $m)
-						<tr>
-							<td class="text-center align-middle" style="width: 10">{{$no++}}</td>
-							{{-- <td>{{$m->nrp}}</td> --}}
-							<td class="text-center align-middle" style="width: 80">{{$m->nama}}</td>
-							{{-- <td>{{$m->alamat}}</td> --}}
-							<td class="text-right align-middle" style="width: 10">
-								<div>
-									<button type="button" class="btn btn-primary" data-toggle="tooltip" title="Detail" onclick="window.location.href='{{ route('mahasiswa.edit',$m->id) }}'">Edit
-			                            
-			                        </button>
-			                        <button type="button" class="btn btn-danger" data-toggle="tooltip" title="Detail" onclick="window.location.href='{{ route('mahasiswa.destroy',$m->id) }}'">Hapus
-			                            
-			                        </button>
-			                        <button class="btn btn-success"  onclick="window.location.href='{{ route('mahasiswa.show',$m->id) }}'">Detail
-								   	
-		                            </button>
-
-								</div>
-							</td>
-						</tr>
-						@endforeach
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h4><i class="fa fa-user"></i> DAFTAR Mahasiswa</h4><hr>
+            <div class=row>
+            	<div class="col-md-6">
+                    <a href={{route('mahasiswa.create')}} class="btn btn-primary">
+                        <i class="fa fa-plus-circle"></i> Tambah Data</a>
+                </div>
+                <div class="col-md-2">
+                	
+                </div>
+                <div class="col-md-4">            
+                </div>
+            </div>
+            <br>
+            @if(count($data))
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped
+          table-hover table-condensed tfix">
+                        <thead align="center">
+                        <tr>
+                            <td><b>NRP</b></td>
+                            <td><b>Nama Mahasiswa</b></td>
+                            <td><b>Nama Dosen Wali</b></td>
+                            <td colspan="2">MENU</td>
+                            {{-- <td ><b></b></td> --}}
+                        </tr>
+                        </thead>
+                            @foreach($data as $m)
+                            <tr>
+                                <td>{{ $m->nrp }}</td>
+                                <td>{{ $m->nama }}</td>
+                                
+                                <td>{{ $m->dosen->nama }}</td>
+                                {{-- <td>{{ $m->namadosen }}</td> --}}
+                                <td align="center" width="30px">
+                                    <a href="{{route('mahasiswa.edit', $m->id)}}" class="btn btn-warning btn-sm" role="button"><i class="fa fa-pencil-square"></i> Edit</a>
+                                </td>
+                                <td align="center" width="30px">
+                                    {!! Form::open(array('route' => array('mahasiswa.destroy', $m->id),
+                                    'method' => 'delete','style' => 'display:inline')) !!}
+                                    <button class='btn btn-sm btn-danger delete-btn' type='submit'>
+                                        <i class='fa fa-times-circle'></i> Delete </button>
+                                    {!! Form::close() !!} 
+                                </td> 
+                            </tr>
+                            @endforeach
+                    </table>
+                </div>
+            @else
+                <div class="alert alert-warning">
+                    <i class="fa fa-exclamation-triangle"></i> Data Mahasiswa belum ada
+                </div>
+            @endif
+        </div></div>
 @endsection
