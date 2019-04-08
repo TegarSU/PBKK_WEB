@@ -14,7 +14,8 @@ class mklDummy extends Seeder
         {
 			 DB::table('mata_kuliahs')->insert([                
 			'kode' => 'mkl00'.$i,                
-			'nama' => 'Matkul'.$i,                
+			'nama_matkul' => 'Matkul'.$i,
+            'sks' => 3,               
 			//'alamat' => 'ITS',            
 		]);       
 	     }

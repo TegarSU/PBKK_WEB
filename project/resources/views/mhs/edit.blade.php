@@ -13,17 +13,16 @@
                     <a href="#" class="list-group-item active">
                         <i class="fa fa-cogs"></i> MENU MAHASISWA
                     </a>
-                    <a href="/mhs" class="list-group-item">
+                    <a href="{{route('mahasiswa.index')}}" class="list-group-item">
                         <i class="fa fa-refresh"></i> Tampilkan Semua</a>
-                    <a href="/" class="list-group-item">
+                    <a href="{{url('/')}}" class="list-group-item">
                         <i class="fa fa-home"></i> Home</a>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        {!!Form::model($m,['method'=>'PATCH','action'=>['mhsController@update'
-                        ,$m->id]]) !!}
+                        {!!Form::model($m,['method'=>'PATCH','action'=>['mhsController@update',$m->id]]) !!}
                         <div class="form-group">
                             {!! Form::label('nrp', 'NRP') !!}
                             {!! Form::text('nrp',null, array('class' => 'form-control'
@@ -40,8 +39,8 @@
                             ,'placeholder'=>'Alamat')) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('nipdosenwali', 'Dosen Wali') !!}
-                            {!! Form::select('nipdosenwali', $doswal ,null ,array('class' => 'form-control')) !!}
+                            {!! Form::label('dosens_id', 'Dosen Wali') !!}
+                            {!! Form::select('dosens_id', $doswal ,null ,array('class' => 'form-control')) !!}
                     	</div>
 	                        {!! Form::button('<i class="fa fa-check-square"></i>'. ' Update', array('type' => 'submit', 'class' => 'btn btn-primary'))!!}
 	                        {!! Form::close()!!}

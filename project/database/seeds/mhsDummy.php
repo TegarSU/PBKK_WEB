@@ -14,8 +14,8 @@ class mhsDummy extends Seeder
         {
 			DB::table('mahasiswas')->insert([                
 			'nrp' => 'mhs00'.$i,                
-			'nama' => 'nama ke-'.$i,                
-			'alamat' => 'ITS',
+			'nama_mhs' => 'nama ke-'.$i,                
+			'alamat_mhs' => 'ITS',
             'dosens_id' => 1]);       
 	     }
 	}

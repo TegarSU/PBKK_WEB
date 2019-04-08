@@ -17,7 +17,7 @@ class mklController extends Controller
         //
         $data = Mata_Kuliah::all(); 
         // dd($data);       
-        return view('mkl.index',compact('data')); 
+        return view('matkul.index',compact('data')); 
         // return view('hasil',compact('name','pass'));
     }
 
@@ -28,7 +28,7 @@ class mklController extends Controller
      */
     public function create()
     {        
-         return view('mkl.create');
+         return view('matkul.create');
     }
 
     /**
@@ -40,11 +40,12 @@ class mklController extends Controller
     public function store(Request $request)
     {
         //
-        $m = new Mata_Kuliah();
-        $m->kode = $request->kode;
-        $m->nama = $request->nama;      
-        // $m->alamat = $request->alamat;        
-        $m->save();        
+        // $m = new Mata_Kuliah();
+        // $m->kode = $request->kode;
+        // $m->nama = $request->nama;      
+        // // $m->alamat = $request->alamat;        
+        // $m->save(); 
+       $m = Mata_Kuliah::create($request->all());       
         return redirect()->route('mata_kuliah.index')->with('alert-success', 'Data Berhasil Disimpan.');
     }
 
@@ -54,12 +55,12 @@ class mklController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Mata_Kuliah $matkul)
     {
         //
-        $m = mata_kuliah::findOrFail($id);
-        //dd($m);
-        return view('mkl.show', compact('m'));
+        // $m = mata_kuliah::findOrFail($id);
+        // //dd($m);
+        // return view('mkl.show', compact('m'));
     }
 
     /**
@@ -68,11 +69,12 @@ class mklController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) 
+    public function edit(Mata_Kuliah $matkul) 
     { 
-      $m = Mata_Kuliah::findOrFail($id); 
-      //dd($m);
-      return view('mkl.edit', compact('m')); 
+        $m = $matkul;
+      // $m = Mata_Kuliah::findOrFail($id); 
+      // //dd($m);
+      return view('matkul.edit', compact('m')); 
     }
 
     /**
@@ -84,11 +86,14 @@ class mklController extends Controller
      */
     public function update(Request $request, $id)    
     {           
-        $m = Mata_Kuliah::findOrFail($id);        
-        $m->kode = $request->kode;        
-        $m->nama = $request->nama;        
-        // $m->alamat = $request->alamat;        
-        $m->save();        
+        // $m = Mata_Kuliah::findOrFail($id);        
+        // $m->kode = $request->kode;        
+        // $m->nama = $request->nama;        
+        // // $m->alamat = $request->alamat;        
+        // $m->save();        
+        $m = Dosen::findorfail($id);
+        // dd($m);
+        $m->update($request->all());
     return redirect()->route('mata_kuliah.index')->with('alert-success', 'Data Berhasil Diubah.');    
     }
 

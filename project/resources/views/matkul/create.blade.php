@@ -1,17 +1,19 @@
 @extends('app')
 @section('title')
-    Tambah Data Mahasiswa
+
+    Tambah Data Mata Kuliah
+
 @endsection
 @section('content')
     <div class="panel panel-default">
         <div class="panel-body">
             <h4><i class="fa fa-plus-square">
-                </i> TAMBAH Mahasiswa</h4><hr>
-                <div class="row"><div class="col-md-3">
+                </i> TAMBAH Mata Kuliah</h4><hr>
+            <div class="row"><div class="col-md-3">
                     <div class="list-group">
                         <a href="#" class="list-group-item active">
-                            <i class="fa fa-cogs"></i> MENU Mhs </a>
-                        <a href="{{ asset('mahasiswa') }}" class="list-group-item">
+                            <i class="fa fa-cogs"></i> MENU Mata Kuliah </a>
+                        <a href="{{route('mata_kuliah.index')}}" class="list-group-item">
                             <i class="fa fa-refresh"></i> Tampilkan Semua</a>
                         <a href="{{url('/')}}" class="list-group-item">
                             <i class="fa fa-home"></i> Home</a>
@@ -20,26 +22,22 @@
                 <div class="col-md-6">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            {!! Form::open(array('url' => '/mahasiswa')) !!}
+                            {!! Form::open(array('url' => '/matakuliahs')) !!}
                             <div class="form-group">
-                                {!! Form::label('nrp', 'NRP') !!}
-                                {!! Form::text('nrp',null, array('class' =>
-                                'form-control','placeholder'=>'NRP')) !!}</div>
-                            <div class="form-group">
-                                {!! Form::label('nama', 'Nama Mahasiswa') !!}
-                                {!! Form::text('nama', null, array('class' =>
-                                'form-control','placeholder'=>'Nama Mahasiswa')) !!}
+                                {!! Form::label('kode_mk', 'Kode MK') !!}
+                                {!! Form::text('kode_mk',null, array('class' =>
+                                'form-control','placeholder'=>'Kode MK')) !!}
                             </div>
                             <div class="form-group">
-                                {!! Form::label('Alamat', 'Alamat Mahasiswa') !!}
-                                {!! Form::text('alamat', null, array('class' =>
-                                'form-control','placeholder'=>'Alamat Mahasiswa')) !!}
+                                {!! Form::label('nama_matkul', 'Nama Mata Kuliah') !!}
+                                {!! Form::text('nama_matkul', null, array('class' =>
+                                'form-control','placeholder'=>'Nama Mata Kuliah')) !!}
                             </div>
-                            <div>
-                                {!! Form::label('dosens_id', 'Dosen Wali') !!}
-                                {!! Form::select('dosens_id', $dsn ,null , array('class' => 'form-control')) !!}
+                            <div class="form-group">
+                                {!! Form::label('sks', 'Jumlah SKS') !!}
+                                {!! Form::text('sks', null, array('class' =>
+                                'form-control','placeholder'=>'Jumlah SKS')) !!}
                             </div>
-                            <br>
                             {!! Form::button('<i class="fa fa-plus-square"></i>'.
                             ' Simpan', array('type' => 'submit', 'class'
                             => 'btn btn-primary'))!!}

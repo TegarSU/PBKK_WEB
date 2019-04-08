@@ -5,6 +5,11 @@
 @section('content')
     <div class="panel panel-default">
         <div class="panel-body">
+            @if(Session::has('alert-success'))
+                <div class="alert alert-success">
+                {{ Session::get('alert-success') }}
+                </div>
+            @endif
             <h4><i class="fa fa-user"></i> DAFTAR Mahasiswa</h4><hr>
             <div class=row>
             	<div class="col-md-6">
@@ -26,6 +31,7 @@
                         <tr>
                             <td><b>NRP</b></td>
                             <td><b>Nama Mahasiswa</b></td>
+                            <td><b>Alamat</b></td>
                             <td><b>Nama Dosen Wali</b></td>
                             <td colspan="2">MENU</td>
                             {{-- <td ><b></b></td> --}}
@@ -34,8 +40,8 @@
                             @foreach($data as $m)
                             <tr>
                                 <td>{{ $m->nrp }}</td>
-                                <td>{{ $m->nama }}</td>
-                                
+                                <td>{{ $m->nama_mhs }}</td>
+                                <td>{{ $m->alamat }}</td>
                                 <td>{{ $m->dosen->nama }}</td>
                                 {{-- <td>{{ $m->namadosen }}</td> --}}
                                 <td align="center" width="30px">

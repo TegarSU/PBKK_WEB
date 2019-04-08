@@ -14,8 +14,8 @@ class dsnDummy extends Seeder
         {
 			 DB::table('dosens')->insert([                
 			'nip' => 'dsn00'.$i,                
-			'nama' => 'nama ke-'.$i,                
-			'alamat' => 'ITS', ]);       
+			'nama_dsn' => 'nama ke-'.$i,                
+			'alamat_dsn' => 'ITS', ]);       
 	     }
 	}
 }

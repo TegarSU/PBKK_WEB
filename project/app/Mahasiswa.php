@@ -8,7 +8,7 @@ class mahasiswa extends Model
 {
     //
     protected $table = 'mahasiswas';
-    protected $fillable = ['nrp','nama','alamat','dosens_id'];
+    protected $fillable = ['nrp','nama_mhs','alamat_mhs','dosens_id'];
 
     public function dosen()
     {

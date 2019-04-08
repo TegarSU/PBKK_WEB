@@ -14,7 +14,8 @@ class DatabaseSeeder extends Seeder
      	$this->call(mhsDummy::class);   
      	$this->call(dsnDummy::class); 
      	$this->call(mklDummy::class);  
-          $this->call(mhsmklDummy::class);  
+          $this->call(frsDummy::class);  
+          $this->call(klsDummy::class);
      }
 
 }

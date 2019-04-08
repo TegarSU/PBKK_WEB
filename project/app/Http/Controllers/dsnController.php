@@ -40,11 +40,12 @@ class dsnController extends Controller
     public function store(Request $request)
     {
         //
-        $m = new Dosen();
-        $m->nip = $request->nip;
-        $m->nama = $request->nama;      
-        $m->alamat = $request->alamat;        
-        $m->save();        
+        // $m = new Dosen();
+        // $m->nip = $request->nip;
+        // $m->nama = $request->nama;      
+        // $m->alamat = $request->alamat;        
+        // $m->save();    
+        Dosen::create($request->all());    
         return redirect()->route('dosen.index')->with('alert-success', 'Data Berhasil Disimpan.');
     }
 
@@ -57,9 +58,9 @@ class dsnController extends Controller
     public function show($id)
     {
         //
-        $data = Dosen::findOrFail($id);
-        //dd($m);
-        return view('dsn.show', compact('data')); 
+        // $data = Dosen::findOrFail($id);
+        // //dd($m);
+        // return view('dsn.show', compact('data')); 
     }
 
     /**
@@ -68,10 +69,13 @@ class dsnController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) 
+    public function edit(Dosen $dosen) 
     { 
-      $m = Dosen::findOrFail($id); 
+      //$m = Dosen::findOrFail($id); 
       //dd($m);
+        $m = $dosen;
+        // dd($m);
+
       return view('dsn.edit', compact('m')); 
     }
 
@@ -84,11 +88,14 @@ class dsnController extends Controller
      */
     public function update(Request $request, $id)    
     {           
-        $m = dosen::findOrFail($id);        
-        $m->nip = $request->nip;        
-        $m->nama = $request->nama;        
-        $m->alamat = $request->alamat;        
-        $m->save();        
+        // $m = dosen::findOrFail($id);        
+        // $m->nip = $request->nip;        
+        // $m->nama = $request->nama;        
+        // $m->alamat = $request->alamat;        
+        // $m->save();        
+        $m = Dosen::findorfail($id);
+        // dd($m);
+        $m->update($request->all());
     return redirect()->route('dosen.index')->with('alert-success', 'Data Berhasil Diubah.');    
     }
 
@@ -102,7 +109,6 @@ class dsnController extends Controller
     public function destroy($id)
     {        
         $m = Dosen::findOrFail($id);
-        $
         $m->delete();
         return redirect()->route('dosen.index')->with('alert-success', 'Data Berhasil Dihapus.');   
     }

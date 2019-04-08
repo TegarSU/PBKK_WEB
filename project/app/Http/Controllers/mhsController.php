@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 // use App\Http\Requests\mhs\StoreRequest;
 use App\Http\Requests\mhs\UpdateRequest;
 use App\Mahasiswa;
-use App\Mhs_mkl;
+// use App\Mhs_mkl;
 use App\Dosen;
 use DB;
 
@@ -70,14 +70,14 @@ class mhscontroller extends Controller
 	public function edit($id) 
 	{ 
 	  $m = mahasiswa::findOrFail($id);
-	  $doswal  = Dosen::pluck('nama','nip'); 
-	  //dd($m);
+	  $doswal  = Dosen::pluck('nama', 'id')->toArray();
+	  // dd($doswal);
 	  return view('mhs.edit', compact('m','doswal')); 
 	}
 
 	public function update(Request $request, $id)    
 	{        	
-		// $m = mahasiswa::find($id);
+		// $m = Mahasiswa::find($id);
 
 		// $m->nrp = $request->nrp;        
 		// $m->nama = $request->nama;        
@@ -85,6 +85,7 @@ class mhscontroller extends Controller
 		// $m->dosens_id = $request->doswal;    
 		// $m->save(); 
 		$m = Mahasiswa::findorfail($id);
+		// dd($m);
         $m->update($request->all());
         // return redirect('/students');       
 	return redirect()->route('mahasiswa.index')->with('alert-success', 'Data Berhasil Diubah.');    

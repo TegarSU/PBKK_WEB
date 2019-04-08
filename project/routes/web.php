@@ -44,6 +44,8 @@ Route::post('/calculator', function (Request $request) {
 Route::resource('mahasiswa','mhsController');
 Route::resource('dosen','dsnController');
 Route::resource('mata_kuliah','mklController');
+Route::resource('frs','frsController');
+Route::resource('kelas','frsController');
 
 // Route::get('/calculator', 'FormController@calculator');
 Route::post('/formSubmit', 'formController@submit')->name('form.submit');
