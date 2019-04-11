@@ -14,6 +14,16 @@ class kelasController extends Controller
     public function index()
     {
         //
+        $data = DB::table('mahasiswas')
+                // ->join('dosens','mahasiswas.dosens_id','=','dosens.id')
+                ->join('frs','mahasiswas.id','=','frs.mahasiswas_id')
+                ->join('kelas','frs.kelas_id','=','kelas.id')
+                ->join('mata_kuliahs','kelas.mata_kuliahs_id','=','mata_kuliahs.id')
+                ->join('dosens','kelas.dosens_id','=','dosens.id')
+                // ->join('mata_kuliahs')
+                ->get();
+                
+        return view('kelas.index');
     }
 
     /**
